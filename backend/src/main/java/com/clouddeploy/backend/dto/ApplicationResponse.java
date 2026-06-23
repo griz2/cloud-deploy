@@ -1,54 +1,20 @@
-package com.clouddeploy.backend.model;
+package com.clouddeploy.backend.dto;
 
 import com.clouddeploy.backend.model.enums.ApplicationStatus;
 import com.clouddeploy.backend.model.enums.Environment;
-import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "applications")
-public class Application {
+public class ApplicationResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
     private String repositoryUrl;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Environment environment;
-
     private String healthCheckUrl;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private ApplicationStatus currentStatus;
-
     private LocalDateTime createdAt;
-
     private LocalDateTime updatedAt;
-
-    @PrePersist
-    public void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-
-        if (currentStatus == null) {
-            currentStatus = ApplicationStatus.UNKNOWN;
-        }
-    }
-
-    @PreUpdate
-    public void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-
-    public Application() {
-    }
 
     public Long getId() {
         return id;
