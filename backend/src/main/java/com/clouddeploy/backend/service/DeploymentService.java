@@ -15,13 +15,16 @@ public class DeploymentService {
 
     private final DeploymentRepository deploymentRepository;
     private final ApplicationRepository applicationRepository;
+    private final DeploymentEngine deploymentEngine;
 
     public DeploymentService(
             DeploymentRepository deploymentRepository,
-            ApplicationRepository applicationRepository) {
+            ApplicationRepository applicationRepository,
+            DeploymentEngine deploymentEngine) {
 
         this.deploymentRepository = deploymentRepository;
         this.applicationRepository = applicationRepository;
+        this.deploymentEngine = deploymentEngine;
     }
 
     public DeploymentResponse createDeployment(
@@ -38,6 +41,8 @@ public class DeploymentService {
         deployment.setApplication(application);
 
         Deployment savedDeployment = deploymentRepository.save(deployment);
+
+        deploymentEngine.executeDeployment(savedDeployment);
 
         return mapToResponse(savedDeployment);
     }

@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "commitSha": "abc123",
-        "branch": "main"
+        "branch": "main",
+        "commitSha": "test-docker-001"
       }
   auth: inherit
 
