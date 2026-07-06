@@ -14,11 +14,11 @@ function ApplicationCard({ application }: ApplicationCardProps) {
       </div>
 
       <div className="card-row">
-        <strong>Status:</strong> {application.status}
+        <strong>Status:</strong> {application.currentStatus}
       </div>
 
       <div className="card-row">
-        <strong>Health:</strong> {application.health}
+        <strong>Health:</strong> {application.healthCheckUrl}
       </div>
 
       <div className="card-row">
