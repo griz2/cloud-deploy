@@ -11,7 +11,7 @@ http:
     data: |-
       {
         "branch": "main",
-        "commitSha": "git-clone-test-002"
+        "commitSha": "git-clone-test-006"
       }
   auth: inherit
 
