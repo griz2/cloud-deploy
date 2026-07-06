@@ -5,13 +5,13 @@ info:
 
 http:
   method: POST
-  url: http://localhost:8080/api/applications/1/deployments
+  url: http://localhost:8080/api/applications/5/deployments
   body:
     type: json
     data: |-
       {
         "branch": "main",
-        "commitSha": "test-docker-001"
+        "commitSha": "git-clone-test-002"
       }
   auth: inherit
 
