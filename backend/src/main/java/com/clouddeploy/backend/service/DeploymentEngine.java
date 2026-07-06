@@ -28,6 +28,8 @@ public class DeploymentEngine {
     @Async
     public void executeDeployment(Deployment deployment) {
 
+        System.out.println(">>> EXECUTE DEPLOYMENT CALLED <<<");
+
         deployment.setStatus(DeploymentStatus.RUNNING);
         deploymentRepository.save(deployment);
 
