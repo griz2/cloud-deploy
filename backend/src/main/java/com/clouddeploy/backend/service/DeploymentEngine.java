@@ -13,13 +13,16 @@ public class DeploymentEngine {
 
     private final DeploymentRepository deploymentRepository;
     private final DockerService dockerService;
+    private final GitService gitService;
 
     public DeploymentEngine(
             DeploymentRepository deploymentRepository,
-            DockerService dockerService) {
+            DockerService dockerService,
+            GitService gitService) {
 
         this.deploymentRepository = deploymentRepository;
         this.dockerService = dockerService;
+        this.gitService = gitService;
     }
 
     @Async
@@ -29,6 +32,9 @@ public class DeploymentEngine {
         deploymentRepository.save(deployment);
 
         try {
+
+            gitService.cloneRepository(
+                    deployment.getApplication().getRepositoryUrl());
 
             dockerService.verifyDockerInstalled();
 
