@@ -8,15 +8,23 @@ import java.nio.file.Path;
 @Service
 public class DockerBuildService {
 
-    public void buildImage(Path workspace, String imageTag)
+    public void buildImage(
+        Path workspace,
+        String dockerfilePath,
+        String imageTag)
             throws IOException, InterruptedException {
+
+        Path dockerfile = workspace.resolve(dockerfilePath);
+        Path buildContext = dockerfile.getParent();
 
         ProcessBuilder processBuilder = new ProcessBuilder(
                 "docker",
                 "build",
+                "-f",
+                dockerfile.toString(),
                 "-t",
                 imageTag,
-                workspace.toString());
+                buildContext.toString());
 
         processBuilder.redirectErrorStream(true);
 
@@ -29,7 +37,9 @@ public class DockerBuildService {
 
         System.out.println("========== DOCKER BUILD ==========");
         System.out.println("Image Tag : " + imageTag);
-        System.out.println("Workspace : " + workspace);
+        System.out.println("Workspace   : " + workspace);
+        System.out.println("Dockerfile  : " + dockerfile);
+        System.out.println("BuildContext: " + buildContext);
         System.out.println(output);
         System.out.println("Exit Code : " + exitCode);
         System.out.println("==================================");

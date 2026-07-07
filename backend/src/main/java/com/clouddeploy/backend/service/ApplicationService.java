@@ -23,6 +23,7 @@ public class ApplicationService {
 
         application.setName(request.getName());
         application.setRepositoryUrl(request.getRepositoryUrl());
+        application.setDockerfilePath(request.getDockerfilePath());
         application.setEnvironment(request.getEnvironment());
         application.setHealthCheckUrl(request.getHealthCheckUrl());
 
@@ -45,6 +46,7 @@ public class ApplicationService {
         response.setId(application.getId());
         response.setName(application.getName());
         response.setRepositoryUrl(application.getRepositoryUrl());
+        response.setDockerfilePath(application.getDockerfilePath());
         response.setEnvironment(application.getEnvironment());
         response.setHealthCheckUrl(application.getHealthCheckUrl());
         response.setCurrentStatus(application.getCurrentStatus());

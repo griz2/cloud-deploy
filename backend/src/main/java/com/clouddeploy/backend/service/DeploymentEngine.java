@@ -46,8 +46,9 @@ public class DeploymentEngine {
                     "clouddeploy-" + deployment.getId();
 
             dockerBuildService.buildImage(
-                    workspace,
-                    imageTag);
+                workspace,
+                deployment.getApplication().getDockerfilePath(),
+                imageTag);
 
             deployment.setStatus(DeploymentStatus.SUCCESS);
 
