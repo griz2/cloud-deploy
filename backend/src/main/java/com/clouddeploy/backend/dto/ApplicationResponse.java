@@ -10,6 +10,7 @@ public class ApplicationResponse {
     private Long id;
     private String name;
     private String repositoryUrl;
+    private String dockerfilePath;
     private Environment environment;
     private String healthCheckUrl;
     private ApplicationStatus currentStatus;
@@ -38,6 +39,14 @@ public class ApplicationResponse {
 
     public void setRepositoryUrl(String repositoryUrl) {
         this.repositoryUrl = repositoryUrl;
+    }
+
+    public String getDockerfilePath() {
+        return dockerfilePath;
+    }
+
+    public void setDockerfilePath(String dockerfilePath) {
+        this.dockerfilePath = dockerfilePath;
     }
 
     public Environment getEnvironment() {

@@ -19,6 +19,7 @@ public class Application {
     private String name;
 
     private String repositoryUrl;
+    private String dockerfilePath;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -77,6 +78,14 @@ public class Application {
 
     public void setRepositoryUrl(String repositoryUrl) {
         this.repositoryUrl = repositoryUrl;
+    }
+
+    public String getDockerfilePath() {
+        return dockerfilePath;
+    }
+
+    public void setDockerfilePath(String dockerfilePath) {
+        this.dockerfilePath = dockerfilePath;
     }
 
     public Environment getEnvironment() {
