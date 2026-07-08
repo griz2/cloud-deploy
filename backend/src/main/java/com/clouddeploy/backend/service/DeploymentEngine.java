@@ -16,17 +16,20 @@ public class DeploymentEngine {
     private final DockerService dockerService;
     private final GitService gitService;
     private final DockerBuildService dockerBuildService;
+    private final DockerRunService dockerRunService;
 
     public DeploymentEngine(
             DeploymentRepository deploymentRepository,
             DockerService dockerService,
             GitService gitService,
-            DockerBuildService dockerBuildService) {
+            DockerBuildService dockerBuildService,
+            DockerRunService dockerRunService) {
 
         this.deploymentRepository = deploymentRepository;
         this.dockerService = dockerService;
         this.gitService = gitService;
         this.dockerBuildService = dockerBuildService;
+        this.dockerRunService = dockerRunService;
     }
 
     @Async
@@ -46,9 +49,14 @@ public class DeploymentEngine {
                     "clouddeploy-" + deployment.getId();
 
             dockerBuildService.buildImage(
-                workspace,
-                deployment.getApplication().getDockerfilePath(),
-                imageTag);
+                    workspace,
+                    deployment.getApplication().getDockerfilePath(),
+                    imageTag);
+
+            String containerId =
+                    dockerRunService.runContainer(imageTag);
+
+            System.out.println("Deployment container started: " + containerId);
 
             deployment.setStatus(DeploymentStatus.SUCCESS);
 
