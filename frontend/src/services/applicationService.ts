@@ -9,6 +9,7 @@ export async function getApplications(): Promise<Application[]> {
 export type CreateApplicationRequest = {
   name: string;
   repositoryUrl: string;
+  dockerfilePath: string;
   environment: string;
   healthCheckUrl: string;
 };

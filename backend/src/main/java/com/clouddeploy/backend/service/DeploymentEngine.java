@@ -58,7 +58,20 @@ public class DeploymentEngine {
 
             System.out.println("Deployment container started: " + containerId);
 
-            deployment.setStatus(DeploymentStatus.SUCCESS);
+            Thread.sleep(5000);
+
+            boolean running =
+                    dockerRunService.isContainerRunning(containerId);
+
+            if (running) {
+
+                deployment.setStatus(DeploymentStatus.SUCCESS);
+
+            } else {
+
+                deployment.setStatus(DeploymentStatus.FAILED);
+
+            }
 
         } catch (Exception e) {
 
