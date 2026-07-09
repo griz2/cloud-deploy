@@ -10,10 +10,11 @@ http:
     type: json
     data: |-
       {
-        "name": "CloudDeploy",
-        "repositoryUrl": "https://github.com/michael/clouddeploy",
+        "name": "CloudDeploy Docker Test",
+        "repositoryUrl": "https://github.com/griz2/cloud-deploy",
+        "dockerfilePath": "backend/Dockerfile",
         "environment": "DEVELOPMENT",
-        "healthCheckUrl": "http://localhost:8080/actuator/health"
+        "healthCheckUrl": "/actuator/health"
       }
   auth: inherit
 

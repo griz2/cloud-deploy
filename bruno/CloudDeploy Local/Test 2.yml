@@ -1,11 +1,18 @@
 info:
-  name: Get Deployments
+  name: Test 2
   type: http
-  seq: 5
+  seq: 4
 
 http:
-  method: GET
+  method: POST
   url: http://localhost:8080/api/applications/6/deployments
+  body:
+    type: json
+    data: |-
+      {
+        "branch": "main",
+        "commitSha": "docker-build-test-008"
+      }
   auth: inherit
 
 settings:

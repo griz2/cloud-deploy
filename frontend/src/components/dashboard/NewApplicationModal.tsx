@@ -14,6 +14,7 @@ function NewApplicationModal({
 }: NewApplicationModalProps) {
   const [name, setName] = useState("");
   const [repositoryUrl, setRepositoryUrl] = useState("");
+  const [dockerfilePath, setDockerfilePath] = useState("Dockerfile");
   const [environment, setEnvironment] = useState("");
   const [healthCheckUrl, setHealthCheckUrl] = useState("");
 
@@ -22,6 +23,7 @@ function NewApplicationModal({
       await createApplication({
         name,
         repositoryUrl,
+        dockerfilePath,
         environment,
         healthCheckUrl,
       });
@@ -30,6 +32,7 @@ function NewApplicationModal({
 
       setName("");
       setRepositoryUrl("");
+      setDockerfilePath("Dockerfile");
       setEnvironment("");
       setHealthCheckUrl("");
 
@@ -78,6 +81,13 @@ function NewApplicationModal({
             placeholder="Repository URL"
             value={repositoryUrl}
             onChange={(e) => setRepositoryUrl(e.target.value)}
+          />
+
+          <input
+            type="text"
+            placeholder="Dockerfile Path"
+            value={dockerfilePath}
+            onChange={(e) => setDockerfilePath(e.target.value)}
           />
 
           <select
