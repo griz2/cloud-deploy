@@ -38,6 +38,13 @@ public class Application {
     @OneToMany(mappedBy = "application")
     private List<Deployment> deployments = new ArrayList<>();
 
+    @OneToMany(
+            mappedBy = "application",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<ApplicationEnvironmentVariable> environmentVariables =
+            new ArrayList<>();
+
     @PrePersist
     public void onCreate() {
         createdAt = LocalDateTime.now();
@@ -126,5 +133,14 @@ public class Application {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<ApplicationEnvironmentVariable> getEnvironmentVariables() {
+        return environmentVariables;
+    }
+
+    public void setEnvironmentVariables(
+            List<ApplicationEnvironmentVariable> environmentVariables) {
+        this.environmentVariables = environmentVariables;
     }
 }
