@@ -53,6 +53,8 @@ public class DeploymentEngine {
             String imageTag =
                     "clouddeploy-" + deployment.getId();
 
+            deployment.setImageTag(imageTag);
+
             dockerBuildService.buildImage(
                     workspace,
                     deployment.getApplication().getDockerfilePath(),
@@ -66,6 +68,15 @@ public class DeploymentEngine {
                     dockerRunService.runContainer(
                             imageTag,
                             environmentVariables);
+
+            deployment.setContainerId(containerId);
+
+            String containerName =
+                    dockerRunService.getContainerName(containerId);
+
+            deployment.setContainerName(containerName);
+
+            deploymentRepository.save(deployment);
 
             System.out.println("Deployment container started: " + containerId);
 

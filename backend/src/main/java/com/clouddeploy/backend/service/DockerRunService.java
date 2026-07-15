@@ -84,4 +84,31 @@ public class DockerRunService {
 
                 return output.equals("true");
         }
+
+        public String getContainerName(String containerId)
+                        throws IOException, InterruptedException {
+
+                ProcessBuilder processBuilder = new ProcessBuilder(
+                        "docker",
+                        "inspect",
+                        "-f",
+                        "{{.Name}}",
+                        containerId);
+
+                processBuilder.redirectErrorStream(true);
+
+                Process process = processBuilder.start();
+
+                String output =
+                        new String(process.getInputStream().readAllBytes())
+                                .trim();
+
+                process.waitFor();
+
+                if (output.startsWith("/")) {
+                        output = output.substring(1);
+                }
+
+                return output;
+        }
 }
