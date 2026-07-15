@@ -18,6 +18,12 @@ public class Deployment {
 
     private String branch;
 
+    private String imageTag;
+
+    private String containerId;
+
+    private String containerName;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private DeploymentStatus status;
@@ -113,5 +119,37 @@ public class Deployment {
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public String getImageTag() {
+        return imageTag;
+    }
+
+    public void setImageTag(String imageTag) {
+        this.imageTag = imageTag;
+    }
+
+    public String getContainerId() {
+        return containerId;
+    }
+
+    public void setContainerId(String containerId) {
+        this.containerId = containerId;
+    }
+
+    public String getContainerName() {
+        return containerName;
+    }
+
+    public void setContainerName(String containerName) {
+        this.containerName = containerName;
+    }
+
+    public List<DeploymentEvent> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<DeploymentEvent> events) {
+        this.events = events;
     }
 }
